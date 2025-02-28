@@ -45,7 +45,7 @@ def crack_md5_fuerzabruta(charset, max_length):
     print("No encontrado con fuerza bruta.")
     
 def crack_sha1_fuerzabruta(charset, max_length):
-    md5_hash = input("Introduce el hash MD5 a crackear: ")
+    md5_hash = input("Introduce el hash SHA1 a crackear: ")
     print("Crackeando con fuerza bruta...")
     for length in range(1, max_length + 1):
         for guess in itertools.product(charset, repeat=length):
