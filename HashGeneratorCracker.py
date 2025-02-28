@@ -43,6 +43,17 @@ def crack_md5_fuerzabruta(charset, max_length):
                 print("Texto encontrado:", word)
                 return
     print("No encontrado con fuerza bruta.")
+    
+def crack_sha1_fuerzabruta(charset, max_length):
+    md5_hash = input("Introduce el hash MD5 a crackear: ")
+    print("Crackeando con fuerza bruta...")
+    for length in range(1, max_length + 1):
+        for guess in itertools.product(charset, repeat=length):
+            word = "".join(guess)
+            if hashlib.sha1(word.encode()).hexdigest() == md5_hash:
+                print("Texto encontrado:", word)
+                return
+    print("No encontrado con fuerza bruta.")
 
 
 def main():
@@ -57,7 +68,8 @@ def main():
     print("\nOpciones:")
     print("1. Hashear una contraseña")
     print("2. Crackear un hash MD5 con fuerza bruta")
-    print("3. Salir")
+    print("3. Crackear un hash SHA1 con fuerza bruta")
+    print("4. Salir")
 
     opcion = input("Seleccione una opción: ")
 
@@ -66,6 +78,8 @@ def main():
     elif opcion == "2":
       crack_md5_fuerzabruta(charset,5)
     elif opcion == "3":
+      crack_sha1_fuerzabruta(charset,5)
+    elif opcion == "4":
       break
     else:
       print("Opción no válida. Por favor, seleccione una opción válida.")
