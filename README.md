@@ -1,5 +1,6 @@
-> [!NOTE]
+> [!IMPORTANT]
 > This has been made for educational purposes.
 
-> [!IMPORTANT]
-> The idea is to test the speed of cracking passwords in python and in other languajes
+> [!NOTE]
+> I would like to improve it giving it a option to test the "same" hash into the different options
+> and see the speed difference.
