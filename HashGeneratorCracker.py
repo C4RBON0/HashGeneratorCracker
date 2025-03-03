@@ -3,8 +3,7 @@
 import hashlib
 import itertools
 
-def hashear_contraseña():
-  contraseña = input("Introduce la contraseña a cifrar: ").encode('utf-8')
+def hashear_contraseña(contraseña):
 
   print("Seleccione el modo de hashing")
   print("1- MD5")
@@ -32,6 +31,13 @@ def hashear_contraseña():
       print(hex_dig)
   else:
       print("Opcion no valida")
+      
+def hashear_contraseña2(contraseña):
+    hash_objectmd5 = hashlib.md5(contraseña)
+    hex_digmd5 = hash_objectmd5.hexdigest()
+    crack_md5_fuerzabruta(hex_digmd5, 5)
+    
+    
 
 def crack_md5_fuerzabruta(charset, max_length):
     md5_hash = input("Introduce el hash MD5 a crackear: ")
@@ -65,6 +71,10 @@ def crack_sha256_fuerzabruta(charset, max_length):
                 print("Texto encontrado:", word)
                 return
     print("No encontrado con fuerza bruta.")
+    
+def compareall(charset, maxlength):
+    contraseña = input("Introduze la contraseña: ")
+    hashear_contraseña2(contraseña)
 
 def main():
 
@@ -80,12 +90,14 @@ def main():
     print("2. Crackear un hash MD5 con fuerza bruta")
     print("3. Crackear un hash SHA1 con fuerza bruta")
     print("4. Crackear un hash SHA256 con fuerza bruta")
-    print("5. Salir")
+    print("5. Comparar el tiempo de cracking de los distintos hash")
+    print("6. Salir")
 
     opcion = input("Seleccione una opción: ")
 
     if opcion == "1":
-      hashear_contraseña()
+      contraseña = input("Introduce la contraseña a cifrar: ").encode('utf-8')
+      hashear_contraseña(contraseña)
     elif opcion == "2":
       crack_md5_fuerzabruta(charset,5)
     elif opcion == "3":
@@ -93,6 +105,8 @@ def main():
     elif opcion == "4":
       crack_sha256_fuerzabruta(charset,5)
     elif opcion == "5":
+      compareall(charset,5)
+    elif opcion == "6":
       break
     else:
       print("Opción no válida. Por favor, seleccione una opción válida.")
